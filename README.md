@@ -76,4 +76,4 @@ Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
 ## 👤 Autor
 
-- **Andrey Alencar Quadros** - [LinkedIn](https://www.linkedin.com/in/andreyquadros/) - [GitHub](https://github.com/andreyquadros)
+- **Everton Almeida** - [LinkedIn](https://www.linkedin.com/in/almeidaeverton/) - [GitHub](https://github.com/EvertuN/)
