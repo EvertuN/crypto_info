@@ -38,10 +38,10 @@ class CryptoListPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2), // Cor da sombra
-                        spreadRadius: 2, // Espalhamento da sombra
-                        blurRadius: 8, // Borrão da sombra
-                        offset: Offset(4, 4), // Deslocamento da sombra (x, y)
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 8,
+                        offset: Offset(4, 4),
                       ),
                     ],
                   ),

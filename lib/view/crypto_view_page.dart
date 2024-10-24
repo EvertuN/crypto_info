@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../model/crypto_model.dart';
+import 'package:fl_chart/fl_chart.dart';
+import '../viewModel/crypto_controller.dart';
 
 class CryptoViewPage extends StatelessWidget {
   final CryptoModel crypto;
+  final cryptoController = Get.find<CryptoController>();
 
-  CryptoViewPage({Key? key, required this.crypto}) : super(key: key);
+  CryptoViewPage({Key? key, required this.crypto}) : super(key: key) {
+    cryptoController.fetchCryptoChart(crypto.cryptoName.toLowerCase());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +69,43 @@ class CryptoViewPage extends StatelessWidget {
                     'Preço mínimo nas ultimas 24h: ${crypto.low_24h}',
                     style: const TextStyle(fontSize: 18),
                   ),
+                  const SizedBox(height: 20),
+                  Obx(() {
+                    if (cryptoController.isLoading.value) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (cryptoController.cryptoPrices.isEmpty) {
+                      return const Center(
+                          child: Text('Nenhum dado de gráfico disponível.'));
+                    } else {
+                      return SizedBox(
+                        height: 300,
+                        child: LineChart(
+                          LineChartData(
+                            borderData: FlBorderData(show: false),
+                            lineBarsData: [
+                              LineChartBarData(
+                                spots: cryptoController.cryptoPrices,
+                                isCurved: true,
+                                // colors: [Colors.blue],
+                                dotData: const FlDotData(show: false),
+                                belowBarData: BarAreaData(show: false),
+                              ),
+                            ],
+                            titlesData: const FlTitlesData(
+                              bottomTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                    showTitles: true, reservedSize: 22),
+                              ),
+                              leftTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                    showTitles: true, reservedSize: 28),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  }),
                 ],
               ),
             ),
